@@ -307,7 +307,7 @@
 
 					worker.onmessage = ({ data }) => {
 						if (!data.found) return;
-						clearTimeout(timeout);
+
 						completed++;
 						this.dispatchEvent("progress", {
 							progress: Math.round((completed / total) * 100),
@@ -317,7 +317,6 @@
 					};
 
 					worker.onerror = (err) => {
-						clearTimeout(timeout);
 						this.error(`Error in worker: ${err.message || err}`);
 						reject(err);
 					};
